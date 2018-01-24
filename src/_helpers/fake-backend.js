@@ -1,5 +1,5 @@
 // array in local storage for registered users
-let users = JSON.parse(localStorage.getItem('users')) || [];
+let users = JSON.parse(localStorage.getItem('users')) || [{username:"1",password:"1"}];
     
 export function configureFakeBackend() {
     let realFetch = window.fetch;
@@ -13,6 +13,8 @@ export function configureFakeBackend() {
                     // get parameters from post request
                     let params = JSON.parse(opts.body);
 
+                    console.log(users);
+                    console.log(params);
                     // find if any user matches login credentials
                     let filteredUsers = users.filter(user => {
                         return user.username === params.username && user.password === params.password;
